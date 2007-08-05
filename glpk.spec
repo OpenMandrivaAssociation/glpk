@@ -1,5 +1,5 @@
 %define	name	glpk
-%define	version	4.15
+%define	version	4.20
 %define	release %mkrel 1
 
 %define lib_name_orig libglpk
@@ -94,7 +94,6 @@ rm -rf %{buildroot}
 %doc AUTHORS COPYING NEWS README
 %{_libdir}/*.so.*
 %attr(0755,root,root) %{_bindir}/glpsol
-%attr(0755,root,root) %{_bindir}/tspsol
 
 %files -n %{lib_name_static_devel}
 %defattr(-, root, root)
