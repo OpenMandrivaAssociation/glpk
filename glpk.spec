@@ -1,5 +1,5 @@
 %define	name	glpk
-%define	version	4.20
+%define	version	4.22
 %define	release %mkrel 1
 
 %define lib_name_orig libglpk
@@ -18,6 +18,9 @@ URL:		http://www.gnu.org/software/glpk/glpk.html
 Source0:	%{name}-%{version}.tar.bz2
 #Patch1:		glpk-4.7_shared_lib.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+Requires: 	libgmp
+BuildRequires:	gmp-devel
+BuildRequires:	/usr/bin/pdflatex, /usr/bin/texi2pdf
 
 %description
 The GLPK (GNU Linear Programming Kit) package is intended for solving
@@ -64,14 +67,12 @@ link your program or library.
 %build
 
 # Trust Knuth to produce a single-pass compiler for a multiple-pass language.
-cd doc
-pdflatex -interaction=nonstopmode -file-line-error-style lang.latex && \
-pdflatex -interaction=nonstopmode -file-line-error-style lang.latex && \
-pdflatex -interaction=nonstopmode -file-line-error-style lang.latex
-pdflatex -interaction=nonstopmode -file-line-error-style refman.latex && \
-pdflatex -interaction=nonstopmode -file-line-error-style refman.latex && \
-pdflatex -interaction=nonstopmode -file-line-error-style refman.latex
-cd ..
+pushd doc
+pdflatex -interaction=nonstopmode -file-line-error-style glpk.latex && \
+pdflatex -interaction=nonstopmode -file-line-error-style glpk.latex && \
+pdflatex -interaction=nonstopmode -file-line-error-style glpk.latex
+texi2pdf -p gmpl.texi && \
+popd
 
 %configure
 %make
@@ -101,7 +102,7 @@ rm -rf %{buildroot}
 
 %files -n %{lib_name_devel}
 %defattr(-, root, root)
-%doc examples doc/bench.txt AUTHORS COPYING ChangeLog INSTALL NEWS README
+%doc examples doc/*.txt doc/*.pdf AUTHORS COPYING ChangeLog INSTALL NEWS README
 %{_includedir}/*.h
 %{_libdir}/*.la
 %{_libdir}/*.so
