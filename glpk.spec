@@ -1,12 +1,16 @@
 %define	name	glpk
-%define	version	4.22
+%define	version	4.24
 %define	release %mkrel 1
 
 %define lib_name_orig libglpk
 %define lib_major 0
-%define lib_name              %mklibname glpk %{lib_major}
-%define lib_name_devel        %mklibname glpk %{lib_major} -d
-%define lib_name_static_devel %mklibname glpk %{lib_major} -s -d
+%define lib_name                  %mklibname glpk %{lib_major}
+
+%define old_lib_name_devel     	  %mklibname glpk %{lib_major} -d
+%define old_lib_name_static_devel %mklibname glpk %{lib_major} -s -d
+
+%define lib_name_devel        	  %mklibname glpk -d
+%define lib_name_static_devel 	  %mklibname glpk -s -d
 
 Summary:	GNU Linear Programming Kit
 Name:		%{name}
@@ -16,7 +20,6 @@ License:	GPL
 Group:		Sciences/Mathematics
 URL:		http://www.gnu.org/software/glpk/glpk.html
 Source0:	%{name}-%{version}.tar.bz2
-#Patch1:		glpk-4.7_shared_lib.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: 	libgmp
 BuildRequires:	gmp-devel
@@ -29,10 +32,11 @@ and other related problems. It is a set of routines written in ANSI C
 and organized in the form of a callable library.
 
 %package -n %{lib_name}
-Summary:	Shared library and utility for LP and MIP
+Summary:	GLPK shared libraries
 Group:		Sciences/Mathematics
 Obsoletes:	%{name}
-Provides: %{lib_name_orig} = %{version}-%{release} %{name} = %{version}-%{release}
+Provides: 	%{lib_name_orig} = %{version}-%{release} 
+Provides:	%{name} = %{version}-%{release}
 
 %description -n %{lib_name}
 This package contains the library needed to run programs dynamically
@@ -41,18 +45,21 @@ linked with GLPK and the utilitity glpsol.
 %package -n %{lib_name_devel}
 Summary:	Header files for development with GLPK
 Group:		Development/C
-Requires:	%{lib_name} = %{version}
-Obsoletes:	%{name}-devel
-Provides: %{lib_name_orig}-devel = %{version}-%{release} %{name}-devel = %{version}-%{release}
+Requires:	%{lib_name} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
+Provides: 	%{lib_name_devel} = %{version}-%{release} 
+Obsoletes:	%{old_lib_name_devel}
 
 %description -n %{lib_name_devel}
 This package contains the headers needed to develop applications using
 GLPK.
 
 %package -n %{lib_name_static_devel}
-Summary: Static libraries for GLPK
-Group: Development/C
-Requires: %{lib_name_devel} = %{version}
+Summary:	GLPK static libraries
+Group: 	 	Development/C
+Requires: 	%{lib_name_devel} = %{version}-%{release}
+Provides:	%{lib_name_static_devel} = %{version}-%{release}
+Obsoletes:	%{old_lib_name_static_devel}
 
 %description -n %{lib_name_static_devel}
 This package contains the static libraries necessary for developing
@@ -62,7 +69,6 @@ link your program or library.
 %prep
 
 %setup -q
-#%patch1 -p1
 
 %build
 
@@ -92,13 +98,8 @@ rm -rf %{buildroot}
 
 %files -n %{lib_name}
 %defattr(-, root, root)
-%doc AUTHORS COPYING NEWS README
 %{_libdir}/*.so.*
 %attr(0755,root,root) %{_bindir}/glpsol
-
-%files -n %{lib_name_static_devel}
-%defattr(-, root, root)
-%{_libdir}/*.a
 
 %files -n %{lib_name_devel}
 %defattr(-, root, root)
@@ -107,4 +108,7 @@ rm -rf %{buildroot}
 %{_libdir}/*.la
 %{_libdir}/*.so
 
+%files -n %{lib_name_static_devel}
+%defattr(-, root, root)
+%{_libdir}/*.a
 
