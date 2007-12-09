@@ -22,8 +22,7 @@ URL:		http://www.gnu.org/software/glpk/glpk.html
 Source0:	%{name}-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: 	libgmp
-BuildRequires:	gmp-devel
-BuildRequires:	/usr/bin/pdflatex, /usr/bin/texi2pdf
+BuildRequires:	gmp-devel, tetex-latex, texinfo
 
 %description
 The GLPK (GNU Linear Programming Kit) package is intended for solving
