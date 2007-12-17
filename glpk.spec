@@ -20,7 +20,6 @@ License:	GPL
 Group:		Sciences/Mathematics
 URL:		http://www.gnu.org/software/glpk/glpk.html
 Source0:	%{name}-%{version}.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: 	libgmp
 BuildRequires:	gmp-devel, tetex-latex, texinfo
 
