@@ -1,5 +1,5 @@
 %define	name	glpk
-%define	version	4.25
+%define	version	4.26
 %define	release %mkrel 1
 
 %define lib_name_orig libglpk
@@ -19,7 +19,7 @@ Release:	%{release}
 License:	GPL
 Group:		Sciences/Mathematics
 URL:		http://www.gnu.org/software/glpk/glpk.html
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	%{name}-%{version}.tar.lzma
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: 	libgmp
 BuildRequires:	gmp-devel, tetex-latex, texinfo
