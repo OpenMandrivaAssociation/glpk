@@ -1,5 +1,5 @@
 %define	name	glpk
-%define	version	4.26
+%define	version	4.27
 %define	release %mkrel 1
 
 %define lib_name_orig libglpk
