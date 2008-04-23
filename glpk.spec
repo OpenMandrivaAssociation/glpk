@@ -79,6 +79,7 @@ pdflatex -interaction=nonstopmode -file-line-error-style glpk.latex
 texi2pdf -p gmpl.texi && \
 popd
 
+export CFLAGS=-ldl
 %configure
 %make
 
