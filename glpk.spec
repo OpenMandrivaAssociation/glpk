@@ -1,27 +1,27 @@
 %define	name	glpk
 %define	version	4.28
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 %define lib_name_orig libglpk
 %define lib_major 0
-%define lib_name                  %mklibname glpk %{lib_major}
+%define lib_name                  %mklibname %{name} %{lib_major}
 
-%define old_lib_name_devel     	  %mklibname glpk %{lib_major} -d
-%define old_lib_name_static_devel %mklibname glpk %{lib_major} -s -d
+%define old_lib_name_devel     	  %mklibname %{name} %{lib_major} -d
+%define old_lib_name_static_devel %mklibname %{name} %{lib_major} -s -d
 
-%define lib_name_devel        	  %mklibname glpk -d
-%define lib_name_static_devel 	  %mklibname glpk -s -d
+%define lib_name_devel        	  %mklibname %{name} -d
+%define lib_name_static_devel 	  %mklibname %{name} -s -d
 
-Summary:	GNU Linear Programming Kit
+Summary:	GLPK glpsol utility
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-License:	GPL
+License:	GPLv3+
 Group:		Sciences/Mathematics
 URL:		http://www.gnu.org/software/glpk/glpk.html
 Source0:	%{name}-%{version}.tar.lzma
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: 	libgmp
+Requires: 	libgmp, %{lib_name} = %{version}-%{release}
 BuildRequires:	gmp-devel, tetex-latex, texinfo
 
 %description
@@ -30,16 +30,22 @@ large-scale linear programming (LP), mixed integer programming (MIP),
 and other related problems. It is a set of routines written in ANSI C
 and organized in the form of a callable library.
 
+This package contains the utility glpsol.
+
 %package -n %{lib_name}
 Summary:	GLPK shared libraries
 Group:		Sciences/Mathematics
 Obsoletes:	%{name}
 Provides: 	%{lib_name_orig} = %{version}-%{release} 
-Provides:	%{name} = %{version}-%{release}
 
 %description -n %{lib_name}
+The GLPK (GNU Linear Programming Kit) package is intended for solving
+large-scale linear programming (LP), mixed integer programming (MIP),
+and other related problems. It is a set of routines written in ANSI C
+and organized in the form of a callable library.
+
 This package contains the library needed to run programs dynamically
-linked with GLPK and the utilitity glpsol.
+linked with GLPK.
 
 %package -n %{lib_name_devel}
 Summary:	Header files for development with GLPK
@@ -50,6 +56,11 @@ Provides: 	%{lib_name_devel} = %{version}-%{release}
 Obsoletes:	%{old_lib_name_devel}
 
 %description -n %{lib_name_devel}
+The GLPK (GNU Linear Programming Kit) package is intended for solving
+large-scale linear programming (LP), mixed integer programming (MIP),
+and other related problems. It is a set of routines written in ANSI C
+and organized in the form of a callable library.
+
 This package contains the headers needed to develop applications using
 GLPK.
 
@@ -61,9 +72,13 @@ Provides:	%{lib_name_static_devel} = %{version}-%{release}
 Obsoletes:	%{old_lib_name_static_devel}
 
 %description -n %{lib_name_static_devel}
+The GLPK (GNU Linear Programming Kit) package is intended for solving
+large-scale linear programming (LP), mixed integer programming (MIP),
+and other related problems. It is a set of routines written in ANSI C
+and organized in the form of a callable library.
+
 This package contains the static libraries necessary for developing
-programs which use GLPK. Install this package if you need to statically
-link your program or library.
+programs which use GLPK. 
 
 %prep
 
@@ -96,10 +111,13 @@ rm -rf %{buildroot}
 %post -n %{lib_name} -p /sbin/ldconfig
 %postun -n %{lib_name} -p /sbin/ldconfig
 
+%files 
+%defattr(-, root, root)
+%attr(0755,root,root) %{_bindir}/glpsol
+
 %files -n %{lib_name}
 %defattr(-, root, root)
 %{_libdir}/*.so.*
-%attr(0755,root,root) %{_bindir}/glpsol
 
 %files -n %{lib_name_devel}
 %defattr(-, root, root)
