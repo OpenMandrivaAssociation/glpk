@@ -88,9 +88,9 @@ programs which use GLPK.
 
 # Trust Knuth to produce a single-pass compiler for a multiple-pass language.
 pushd doc
-pdflatex -interaction=nonstopmode -file-line-error-style glpk.latex && \
-pdflatex -interaction=nonstopmode -file-line-error-style glpk.latex && \
-pdflatex -interaction=nonstopmode -file-line-error-style glpk.latex
+pdflatex -interaction=nonstopmode -file-line-error-style glpk.tex && \
+pdflatex -interaction=nonstopmode -file-line-error-style glpk.tex && \
+pdflatex -interaction=nonstopmode -file-line-error-style glpk.tex
 texi2pdf -p gmpl.texi && \
 popd
 
