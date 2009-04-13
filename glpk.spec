@@ -1,5 +1,5 @@
 %define	name	glpk
-%define	version	4.36
+%define	version	4.37
 %define	release %mkrel 1
 
 %define lib_name_orig libglpk
@@ -86,6 +86,11 @@ programs which use GLPK.
 
 %build
 
+%define __libtoolize /bin/true
+export CFLAGS=-ldl
+%configure
+%make
+
 # Trust Knuth to produce a single-pass compiler for a multiple-pass language.
 pushd doc
 pdflatex -interaction=nonstopmode -file-line-error-style glpk.tex && \
@@ -94,19 +99,15 @@ pdflatex -interaction=nonstopmode -file-line-error-style glpk.tex
 texi2pdf -p gmpl.texi && \
 popd
 
-export CFLAGS=-ldl
-%configure
-%make
-
 %install
-rm -rf $RPM_BUILD_ROOT
+%__rm -rf $RPM_BUILD_ROOT
 %makeinstall
 # Clean out the examples directory so we can include it wholesale in %doc.
-make -C examples distclean
-rm -rf examples/Makefile*
+%make -C examples distclean
+%__rm -rf examples/Makefile*
 
 %clean
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post -n %{lib_name} -p /sbin/ldconfig
