@@ -1,5 +1,5 @@
 %define	name	glpk
-%define	version	4.39
+%define	version	4.41
 %define	release %mkrel 1
 
 %define lib_name_orig libglpk
@@ -19,7 +19,7 @@ Release:	%{release}
 License:	GPLv3+
 Group:		Sciences/Mathematics
 URL:		http://www.gnu.org/software/glpk/glpk.html
-Source0:	%{name}-%{version}.tar.gz
+Source0:	http://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: 	libgmp, %{lib_name} = %{version}-%{release}
 BuildRequires:	gmp-devel, tetex-latex, texinfo
@@ -85,10 +85,7 @@ programs which use GLPK.
 %setup -q
 
 %build
-
-%define __libtoolize /bin/true
-export CFLAGS=-ldl
-%configure
+%configure2_5x
 %make
 
 # Trust Knuth to produce a single-pass compiler for a multiple-pass language.
