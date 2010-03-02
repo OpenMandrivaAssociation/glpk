@@ -1,5 +1,5 @@
 %define	name	glpk
-%define	version	4.42
+%define	version	4.43
 %define	release %mkrel 1
 
 %define lib_name_orig libglpk
@@ -97,7 +97,8 @@ texi2pdf -p gmpl.texi && \
 popd
 
 %install
-%__rm -rf $RPM_BUILD_ROOT
+%__rm -rf %{buildroot}
+
 %makeinstall
 # Clean out the examples directory so we can include it wholesale in %doc.
 %make -C examples distclean
