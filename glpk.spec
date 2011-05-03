@@ -1,6 +1,6 @@
 %define	name	glpk
 %define	version	4.44
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 %define lib_name_orig libglpk
 %define lib_major 0
