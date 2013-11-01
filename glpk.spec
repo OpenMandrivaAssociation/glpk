@@ -4,12 +4,12 @@
 
 Summary:	GLPK glpsol utility
 Name:		glpk
-Version:	4.47
-Release:	3
+Version:	4.52.1
+Release:	1
 License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		http://www.gnu.org/software/glpk/glpk.html
-Source0:	http://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://ftp.gnu.org/gnu/glpk/%{name}-%{version}.tar.gz
 BuildRequires:	gmp-devel
 BuildRequires:	tetex-latex
 BuildRequires:	texinfo
@@ -73,5 +73,6 @@ rm -rf examples/Makefile*
 %doc examples doc/*.txt doc/*.pdf AUTHORS COPYING ChangeLog INSTALL NEWS README
 %{_includedir}/*.h
 %{_libdir}/*.so
+
 
 
