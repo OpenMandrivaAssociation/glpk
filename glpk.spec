@@ -65,14 +65,20 @@ rm -rf examples/Makefile*
 
 %files 
 %{_bindir}/glpsol
+/usr/lib/libglpk.so.36
+/usr/lib/libglpk.so.36.0.1
 
 %files -n %{libname}
 %{_libdir}/libglpk.so.%{major}*
+/usr/lib/libglpk.so.36
+/usr/lib/libglpk.so.36.0.1
 
 %files -n %{devname}
 %doc examples doc/*.txt doc/*.pdf AUTHORS COPYING ChangeLog INSTALL NEWS README
 %{_includedir}/*.h
 %{_libdir}/*.so
+/usr/lib/libglpk.so.36
+/usr/lib/libglpk.so.36.0.1
 
 
 
