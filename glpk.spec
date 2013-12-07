@@ -5,7 +5,7 @@
 Summary:	GLPK glpsol utility
 Name:		glpk
 Version:	4.52.1
-Release:	38
+Release:	39
 License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		http://www.gnu.org/software/glpk/glpk.html
