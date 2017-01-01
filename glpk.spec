@@ -1,11 +1,11 @@
-%define major	36
+%define major	40
 %define libname	%mklibname %{name} %{major}
 %define devname	%mklibname %{name} -d
 
 Summary:	GLPK glpsol utility
 Name:		glpk
-Version:	4.52.1
-Release:	45
+Version:	4.60
+Release:	1
 License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		http://www.gnu.org/software/glpk/glpk.html

@@ -1,4 +1,2 @@
-removed_sources:
-  glpk-4.47.tar.gz: 35e16d3167389b6bc75eb51b4b48590db59f789c
 sources:
-  glpk-4.52.1.tar.gz: 63fd6788f95adb52789767b19e38cfb58dda331e
+  glpk-4.60.tar.gz: 4e55a3d2aa38b19c5bdd8a195738dbaf44e91e90
