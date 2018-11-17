@@ -54,7 +54,7 @@ pushd doc
 pdflatex -interaction=nonstopmode -file-line-error-style glpk.tex && \
 pdflatex -interaction=nonstopmode -file-line-error-style glpk.tex && \
 pdflatex -interaction=nonstopmode -file-line-error-style glpk.tex
-texi2pdf -p gmpl.texi && \
+#texi2pdf -p gmpl.texi && \
 popd
 
 %install
