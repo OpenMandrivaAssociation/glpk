@@ -8,7 +8,7 @@ Version:	5.0
 Release:	2
 License:	GPLv3+
 Group:		Sciences/Mathematics
-Url:		http://www.gnu.org/software/glpk/glpk.html
+Url:		https://www.gnu.org/software/glpk/glpk.html
 Source0:	http://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:	gmp-devel
 BuildRequires:	tetex-latex
