@@ -10,6 +10,11 @@ License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		https://www.gnu.org/software/glpk/glpk.html
 Source0:	http://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gmp-devel
 BuildRequires:	tetex-latex
 BuildRequires:	texinfo
